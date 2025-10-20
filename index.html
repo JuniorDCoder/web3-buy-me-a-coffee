@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Coffee | Buy Me a Coffee with Crypto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-mug-hot"></i>
+                    <span>CryptoCoffee</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">How It Works</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Fuel My Coding Journey with Crypto Coffee</h1>
+                    <p>Support my work and help me stay caffeinated while building the future of Web3. Every donation helps me create more amazing projects!</p>
+                    <div class="button-group">
+                        <button id="connectButton" class="btn btn-primary">
+                            <i class="fas fa-plug"></i> Connect Wallet
+                        </button>
+                        <button id="balanceButton" class="btn btn-outline">
+                            <i class="fas fa-wallet"></i> Check Balance
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="coffee-card">
+                        <h2 class="card-title">
+                            <i class="fas fa-coffee"></i> Buy Me a Coffee
+                        </h2>
+                        <div class="form-group">
+                            <label for="ethAmount">ETH Amount</label>
+                            <div class="input-with-icon">
+                                <i class="fab fa-ethereum"></i>
+                                <input type="text" id="ethAmount" name="ethAmount" placeholder="0.1" />
+                            </div>
+                        </div>
+                        <button type="button" id="fundButton" class="btn btn-primary">
+                            <i class="fas fa-coffee"></i> Buy Coffee
+                        </button>
+                        <button type="button" id="withdrawButton" class="btn btn-secondary">
+                            <i class="fas fa-hand-holding-usd"></i> Withdraw
+                        </button>
+                        
+                        <div id="statusMessage" class="status-message"></div>
+                        
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalDonations">24.5</div>
+                                <div class="stat-label">ETH Donated</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="coffeeCount">128</div>
+                                <div class="stat-label">Coffees Bought</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="supporters">89</div>
+                                <div class="stat-label">Supporters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Why Support With Crypto?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Lightning Fast</h3>
+                        <p>Transactions are processed in seconds, not days. No more waiting for bank transfers to clear.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-low-vision"></i>
+                        </div>
+                        <h3>Transparent</h3>
+                        <p>All transactions are recorded on the blockchain for complete transparency and accountability.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Global</h3>
+                        <p>Support from anywhere in the world without worrying about currency conversions or borders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Smart Contract</a>
+                <a href="#">GitHub</a>
+            </div>
+            <p>&copy; 2023 CryptoCoffee. All rights reserved. Powered by Web3 technology.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="index-js.js"></script>
+</body>
+</html>
