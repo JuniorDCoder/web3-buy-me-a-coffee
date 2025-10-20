@@ -365,3 +365,27 @@ footer {
         flex-direction: column;
     }
 }
+
+.funding-result {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    display: none;
+}
+
+.funding-result.show {
+    display: block;
+}
+
+.funding-amount {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.funding-label {
+    font-size: 0.9rem;
+    color: var(--gray);
+}

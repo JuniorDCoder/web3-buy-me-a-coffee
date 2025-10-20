@@ -15,6 +15,9 @@ let publicClient
 document.getElementById('totalDonations').textContent = (24.5 + Math.random() * 2).toFixed(1);
 document.getElementById('coffeeCount').textContent = 128 + Math.floor(Math.random() * 10);
 document.getElementById('supporters').textContent = 89 + Math.floor(Math.random() * 5);
+const checkFundingButton = document.getElementById('checkFundingButton');
+const fundingResult = document.getElementById('fundingResult');
+
 
 // Show status message
 function showStatus(message, isSuccess = true) {
@@ -186,8 +189,74 @@ async function withdraw() {
     }
 }
 
+async function checkFundingAmount() {
+    console.log('Checking funding amount...');
+
+    if(typeof window.ethereum !== 'undefined') {
+        try {
+            showStatus('Fetching your funding amount...', true);
+            
+            walletClient = createWalletClient({
+                transport: custom(window.ethereum),
+            })
+            const [connectedAccount] = await walletClient.requestAddresses()
+            
+            publicClient = createPublicClient({
+                transport: custom(window.ethereum),
+            })
+
+            // Call the getAddressToAmountFunded function from the smart contract
+            const fundingAmount = await publicClient.readContract({
+                address: contractAddress,
+                abi: abi,
+                functionName: 'getAddressToAmountFunded',
+                args: [connectedAccount],
+            })
+
+            console.log(`Funding amount for ${connectedAccount}: ${fundingAmount}`)
+            
+            // Format the amount from Wei to ETH
+            const formattedAmount = formatEther(fundingAmount);
+            
+            // Display the result
+            displayFundingResult(formattedAmount, connectedAccount);
+            showStatus('Funding amount retrieved successfully!', true);
+            
+        } catch (error) {
+            console.error('Funding amount check error:', error);
+            showStatus('Failed to fetch funding amount. Make sure you have funded before.', false);
+            
+            // Display error in funding result
+            fundingResult.innerHTML = `
+                <div class="funding-amount" style="color: #EF4444;">0 ETH</div>
+                <div class="funding-label">No funding record found for your address</div>
+            `;
+            fundingResult.className = 'funding-result show';
+        }
+    } else {
+        showStatus('MetaMask not detected.', false);
+    }
+}
+
+// Function to display the funding result
+function displayFundingResult(amount, address) {
+    const shortAddress = `${address.slice(0, 6)}...${address.slice(-4)}`;
+    
+    fundingResult.innerHTML = `
+        <div class="funding-amount">${parseFloat(amount).toFixed(4)} ETH</div>
+        <div class="funding-label">Total funded by ${shortAddress}</div>
+    `;
+    fundingResult.className = 'funding-result show';
+    
+    // Auto-hide after 10 seconds
+    setTimeout(() => {
+        fundingResult.className = 'funding-result';
+    }, 10000);
+}
+
 // Event listeners
 connectButton.onclick = connect
 fundButton.onclick = fund
 balanceButton.onclick = getBalance
 withdrawButton.onclick = withdraw
+checkFundingButton.onclick = checkFundingAmount;
